@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.js"></script>
+    <script type = "text/javascript">
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:8037/spring-mvc-restfull-crud-example/book",
+                method: "GET",
+                dataType: "json",
+                success: function (data) {
+                    $("#datatable").dataTable({
+                        data: data,
+                        sort: false,
+                        searching: false,
+                        paging: false,
+                        columns: [
+                            {'data': 'id'},
+                            {'data': 'title'},
+                            {'data': 'author'},
+                        ]
+                    })
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <div style = "width: 700px; padding: 5px; border: 1px solid black;">
+        <table id = "datatable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
